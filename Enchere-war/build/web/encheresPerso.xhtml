@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <title>Enchère et en Oseille</title>    
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-" crossorigin="anonymous"></link>
+    
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/side-menu.css"></link>
+        <link rel="stylesheet" href="css/layouts/liste.css"></link>
+        <!--<![endif]-->
+    </h:head>
+    <h:body>
+        
+        
+        <div id="layout">
+            <!-- Menu toggle -->
+            <a href="#menu" id="menuLink" class="menu-link">
+                <!-- Hamburger icon -->
+                <span></span>
+            </a>
+
+            <div id="menu">
+                <div class="pure-menu">
+                    <a class="pure-menu-heading" href="accueil.xhtml">Accueil</a>
+
+                    <ul class="pure-menu-list">
+                        <br></br>
+                        <h2>#{login.getTokenPseudo()}</h2>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Recherche" outcome = "#{articleRechercheBean.articles()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Vendre un article" outcome = "#{articleRechercheBean.articleAjouter()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Mes articles" outcome = "#{articleRechercheBean.articlesPerso()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Mes enchères" outcome = "#{encheres.encheresPerso()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Déconnexion" outcome = "#{login.logout()}" /></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="main">
+                <div class="header">
+                    <h1>MES ENCHERES</h1>
+                </div>
+
+                <div class="content">
+                    <h2 class="content-subhead">Consultez toutes vos enchères</h2>
+                    <p>
+                        
+                        <div class="table-wrapper">
+                            <h:dataTable var="ligne" 
+                                         value="#{encheres.findArticlesByIdToken()}"
+                                    styleClass="order-table"
+                                    headerClass="order-table-header"
+                                    rowClasses="order-table-odd-row,order-table-even-row"
+                                    class="fl-table">
+                                <h:column>
+                                    <f:facet name="header">Montant</f:facet>
+                                    #{ligne.montant}
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Consulter</f:facet>
+                                    <div class="form-style-5">
+                                        <h:form>
+                                        <h:commandButton value="Consulter" 
+                                                         action="#{encheres.enchere()}"/>
+                                        </h:form>
+                                    </div>
+                                </h:column>
+                                
+                                <h:column>
+                                    <f:facet name="header">Annuler</f:facet>
+                                    <h:form>
+                                        <h:commandButton value="Retirer mon enchere" 
+                                                             action="#{encheres.deleteEnchere(ligne.id)}"/>
+                                    </h:form>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

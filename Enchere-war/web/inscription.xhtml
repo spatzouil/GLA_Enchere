@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <title>Enchère et en Oseille</title>    
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-" crossorigin="anonymous"></link>
+    
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/side-menu.css"></link>
+        <link rel="stylesheet" href="css/layouts/form.css"></link>
+        <!--<![endif]-->
+    </h:head>
+    <h:body>
+        
+        
+        <div id="layout">
+            <!-- Menu toggle -->
+            <a href="#menu" id="menuLink" class="menu-link">
+                <!-- Hamburger icon -->
+                <span></span>
+            </a>
+
+            <div id="menu">
+                <div class="pure-menu">
+                    <a class="pure-menu-heading" href="index.xhtml">Accueil</a>
+
+                    <ul class="pure-menu-list">
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Login" outcome = "#{login.login()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Inscription" outcome = "#{inscription.inscription()}" /></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="main">
+                <div class="header">
+                    <h1>INSCRIPTION</h1>
+                </div>
+
+                <div class="content">
+                    <h2 class="content-subhead">Remplissez le formulaire d'inscription</h2>
+                    <p>
+                        <div class="form-style-5">
+                            <h:form>
+                                <fieldset>
+                                    <legend> Inscription </legend>
+                                    <div>
+                                        Pseudo: 
+                                        <h:inputText value="#{inscription.pseudo}" 
+                                                     required ="true"
+                                                     requiredMessage="Rentrez un pseudo" 
+                                                     id="pseudoInput">
+                                        </h:inputText>
+                                        <h:message  for="pseudoInput"  styleClass="error" />
+                                    </div>
+                                    <div>
+                                        Mot de passe: 
+                                        <h:inputText value="#{inscription.mdp}"
+                                                     required ="true"
+                                                     requiredMessage="Rentrez un mot de passe" 
+                                                     id="mdpInput">
+                                        </h:inputText>
+                                        <h:message  for="mdpInput"  styleClass="error" />
+                                    </div>
+                                    <div>
+                                        Nom: 
+                                        <h:inputText value="#{inscription.nom}"
+                                                     required ="true"
+                                                     requiredMessage="Rentrez votre nom" 
+                                                     id="nomInput">
+                                        </h:inputText>
+                                        <h:message  for="nomInput"  styleClass="error" />
+                                    </div>
+                                    <div>
+                                        Prenom: 
+                                        <h:inputText value="#{inscription.prenom}"
+                                                     required ="true"
+                                                     requiredMessage="Rentrez votre prénom" 
+                                                     id="prenomInput">
+                                        </h:inputText>
+                                        <h:message  for="prenomInput"  styleClass="error" />
+                                    </div>
+                                    <div>
+                                        Adresse 
+                                        <h:inputText value="#{inscription.adresse}"
+                                                     required ="true"
+                                                     requiredMessage="Rentrez votre adresse" 
+                                                     id="adresseInput">
+                                        </h:inputText>
+                                        <h:message  for="adresseInput"  styleClass="error" />
+                                    </div>
+                                    <div>
+                                        Numero de compte banquaire  
+                                        <h:inputText value="#{inscription.numeroBanquaire}"
+                                                     required ="true"
+                                                     requiredMessage="Rentrez vos informations banquaires" 
+                                                     id="numInput">
+                                        </h:inputText>
+                                        <h:message  for="numInput"  styleClass="error" />
+                                    </div>
+                                    <div>
+                                        <h:commandButton value="S'inscrire" action="#{inscription.inscriptionOK()}"/>
+                                    </div>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

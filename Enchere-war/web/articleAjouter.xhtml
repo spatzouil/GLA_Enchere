@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <title>Enchère et en Oseille</title>    
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-" crossorigin="anonymous"></link>
+    
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/side-menu.css"></link>
+        <link rel="stylesheet" href="css/layouts/form.css"></link>
+        <!--<![endif]-->
+    </h:head>
+    <h:body>
+        
+        
+        <div id="layout">
+            <!-- Menu toggle -->
+            <a href="#menu" id="menuLink" class="menu-link">
+                <!-- Hamburger icon -->
+                <span></span>
+            </a>
+
+            <div id="menu">
+                <div class="pure-menu">
+                    <a class="pure-menu-heading" href="accueil.xhtml">Accueil</a>
+
+                    <ul class="pure-menu-list">
+                        <br></br>
+                        <h2>#{login.getTokenPseudo()}</h2>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Recherche" outcome = "#{articleRechercheBean.articles()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Vendre un article" outcome = "#{articleRechercheBean.articleAjouter()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Mes articles" outcome = "#{articleRechercheBean.articlesPerso()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Mes enchères" outcome = "#{encheres.encheresPerso()}" /></li>
+                        <br></br>
+                        <li class="pure-menu-item"><h:link value = "Déconnexion" outcome = "#{login.logout()}" /></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="main">
+                <div class="header">
+                    <h1>VENDRE UN ARTICLE</h1>
+                </div>
+
+                <div class="content">
+                    <h2 class="content-subhead">Voulez vous vendre un nouvel article ?</h2>
+                    <p>
+                        
+                        <div class="form-style-5">
+                            <h:form>
+                                <fieldset>
+                                    <legend>Ajouter un Article</legend>
+                                    <div>
+                                        Nom: 
+                                        <h:inputText value="#{articleAjoutBean.nom}" 
+                                                     required ="true"
+                                                     requiredMessage="Précisez un nom" 
+                                                     id="pseudoInput">
+                                        </h:inputText>
+                                        <h:message  for="pseudoInput"  styleClass="error" />
+                                    </div>
+
+                                    <div>
+                                        Description: 
+                                        <h:inputText value="#{articleAjoutBean.description}"
+                                                     required ="true"
+                                                     requiredMessage="Précisez une description" 
+                                                     id="descriptionInput">
+                                        </h:inputText>
+                                        <h:message  for="descriptionInput"  styleClass="error" />
+                                    </div>
+                                    
+                                    <div>
+                                        Categorie 
+                                        <h:selectOneMenu value="#{articleAjoutBean.categorie}" id="categorieInput">
+                                            <f:selectItem itemValue="electronique" itemLabel = "Electronique"/>
+                                            <f:selectItem itemValue="outil" itemLabel = "Outil"/>
+                                            <f:selectItem itemValue="culturel" itemLabel = "Culturel"/>
+                                            <f:selectItem itemValue="vetement" itemLabel = "Vêtement"/>
+                                        </h:selectOneMenu>
+                                        <h:message  for="categorieInput"  styleClass="error" />
+                                    </div>
+
+                                    <div>
+                                        Prix: 
+                                        <h:inputText value="#{articleAjoutBean.prix}"
+                                                     required ="true"
+                                                     requiredMessage="Précisez le prix" 
+                                                     id="prixInput">
+                                        </h:inputText>
+                                        <h:message  for="prixInput"  styleClass="error" />
+                                    </div>
+
+                                    <div>
+                                        Date de fin: 
+                                        <h:inputText p:type="date" value="#{articleAjoutBean.dateFin}"
+                                                     required ="true"
+                                                     requiredMessage="Précisez une date de fin" 
+                                                     id="dateFinInput">
+                                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                        </h:inputText>
+                                        <h:message  for="dateFinInput"  styleClass="error" />
+                                    </div>
+
+                                    <div>
+                                        <h:commandButton value="Ajouter" action="#{articleAjoutBean.ajouterArticle()}"/>
+                                    </div>
+
+                                </fieldset>
+                            </h:form>
+                        </div>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
